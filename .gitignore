@@ -1,0 +1,17 @@
+# Build directory
+bin/
+
+# Compiled COBOL files
+*.so
+*.dll
+*.exe
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Editor specific files
+.vscode/*
+!.vscode/tasks.json
+!.vscode/extensions.json
+!.vscode/settings.json
