@@ -130,39 +130,39 @@ flowchart TB
 ```mermaid
 erDiagram
     SYLLABUS {
-        X(6)   SYL-COURSE-ID      "科目コード" PK
-        X(30)  SYL-COURSE-NAME    "科目名"
-        X(4)   SYL-DEPARTMENT-ID  "学部学科コード" FK
-        X(5)   SYL-TEACHER-ID     "教員ID" FK
-        X(2)   SYL-SEMESTER       "学期"
-        9      SYL-CREDITS        "単位数"
-        X(200) SYL-DESCRIPTION    "授業概要"
-        X(100) SYL-OBJECTIVES     "学習目標"
-        X(30)  SYL-WEEK-PLAN[15]  "週次計画"
-    }
-    DEPARTMENT {
-        X(4)   DEP-ID             "学部学科コード" PK
-        X(30)  DEP-NAME           "学部学科名"
-    }
-    TEACHER {
-        X(5)   TEA-ID             "教員ID" PK
-        X(20)  TEA-LAST-NAME      "姓"
-        X(20)  TEA-FIRST-NAME     "名"
-        X(4)   TEA-DEPARTMENT-ID  "所属学部" FK
-        X(15)  TEA-TITLE          "職位"
-        X(30)  TEA-SPECIALIZATION "専門分野"
-        X(15)  TEA-OFFICE-LOCATION "研究室"
-        X(15)  TEA-PHONE          "電話番号"
-        X(30)  TEA-EMAIL          "メール"
-        9(4)   TEA-HIRE-YEAR      "採用年"
-        9(2)   TEA-HIRE-MONTH     "採用月"
-        9(2)   TEA-HIRE-DAY       "採用日"
-        X(1)   TEA-STATUS         "状態"
+        string SYL_COURSE_ID PK
+        string SYL_COURSE_NAME
+        string SYL_DEPARTMENT_ID FK
+        string SYL_TEACHER_ID FK
+        string SYL_SEMESTER
+        int    SYL_CREDITS
+        string SYL_DESCRIPTION
+        string SYL_OBJECTIVES
+        string SYL_WEEK_PLAN
     }
 
-    SYLLABUS ||--o{ DEPARTMENT : "所属"
-    SYLLABUS ||--o{ TEACHER    : "担当"
-    TEACHER  }o--|| DEPARTMENT : "所属"
+    DEPARTMENT {
+        string DEP_ID PK
+        string DEP_NAME
+    }
+
+    TEACHER {
+        string TEA_ID PK
+        string TEA_LAST_NAME
+        string TEA_FIRST_NAME
+        string TEA_DEPARTMENT_ID FK
+        string TEA_TITLE
+        string TEA_SPECIALIZATION
+        string TEA_OFFICE_LOCATION
+        string TEA_PHONE
+        string TEA_EMAIL
+        string TEA_HIRE_DATE
+        string TEA_STATUS
+    }
+
+    SYLLABUS }o--|| DEPARTMENT : has
+    SYLLABUS }o--|| TEACHER : has
+    TEACHER }o--|| DEPARTMENT : belongs_to
 ```
 - ※Mermaid記法によるER図はGitHubや一部ツールで可視化可能です。
 
