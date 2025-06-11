@@ -1,0 +1,164 @@
+# モジュール
+## SYLABUS.cbl（メインメニュー）
+
+シラバス管理システムのメインメニューを表示し、各機能（登録・更新・削除・照会・一覧・レポート）のサブプログラムを呼び出す統括モジュール。
+
+**主なサブルーチン**
+- MAIN-CONTROL SECTION
+- INITIALIZE-MESSAGES SECTION
+- DISPLAY-MAIN-MENU SECTION
+- PROCESS-MENU-CHOICE SECTION
+- CALL-SYLLABUS-REGISTER SECTION
+- CALL-SYLLABUS-UPDATE SECTION
+- CALL-SYLLABUS-DELETE SECTION
+- CALL-SYLLABUS-QUERY SECTION
+- CALL-SYLLABUS-LIST SECTION
+- CALL-REPORT-GENERATE SECTION
+
+---
+
+## SYLREG.cbl（シラバス登録）
+
+新しいシラバス（科目情報）を登録するための入力画面を提供し、syllabus.datファイルに新規レコードを書き込む登録専用モジュール。
+
+**主なサブルーチン**
+- MAIN-PROCESS SECTION
+- OPEN-FILE SECTION
+- CLOSE-FILE SECTION
+- INITIALIZE-SYLLABUS-RECORD SECTION
+- INPUT-SYLLABUS-DATA SECTION
+- INPUT-WEEK-PLAN-DATA SECTION
+- WRITE-SYLLABUS-RECORD SECTION
+- CHECK-CONTINUE SECTION
+
+---
+
+## SYLUPD.cbl（シラバス更新）
+
+既存のシラバス情報を検索し、各項目（科目名・学部・教員・学期・単位・概要・目標・週計画）を個別に更新できる編集モジュール。
+
+**主なサブルーチン**
+- MAIN-PROCESS SECTION
+- INITIALIZATION SECTION
+- MAIN-LOGIC SECTION
+- TERMINATION SECTION
+- OPEN-FILE SECTION
+- CLOSE-FILE SECTION
+- PROCESS-UPDATE SECTION
+- SEARCH-SYLLABUS SECTION
+- UPDATE-SYLLABUS-LOOP SECTION
+- UPDATE-COURSE-NAME SECTION
+- UPDATE-DEPARTMENT SECTION
+- UPDATE-TEACHER SECTION
+- UPDATE-SEMESTER SECTION
+- UPDATE-CREDITS SECTION
+- UPDATE-DESCRIPTION SECTION
+- UPDATE-OBJECTIVES SECTION
+- UPDATE-WEEK-PLAN SECTION
+- REWRITE-SYLLABUS-RECORD SECTION
+- CHECK-CONTINUE SECTION
+
+---
+
+## SYLDEL.cbl（シラバス削除）
+
+指定した科目コードのシラバス情報を検索し、ユーザー確認後にsyllabus.datから削除する削除専用モジュール。
+
+**主なサブルーチン**
+- MAIN-PROCESS SECTION
+- OPEN-FILE SECTION
+- CLOSE-FILE SECTION
+- DELETE-SYLLABUS-PROCESS SECTION
+- SEARCH-SYLLABUS SECTION
+- CONFIRM-DELETION SECTION
+- DELETE-SYLLABUS-RECORD SECTION
+- CHECK-CONTINUE SECTION
+
+---
+
+## SYLQRY.cbl（シラバス照会）
+
+科目コードを指定してシラバス情報を検索・照会し、詳細情報や週ごとの授業計画を画面表示する照会専用モジュール。
+
+**主なサブルーチン**
+- MAIN-PROCESS SECTION
+- OPEN-FILE SECTION
+- CLOSE-FILE SECTION
+- QUERY-SYLLABUS-PROCESS SECTION
+- SEARCH-SYLLABUS SECTION
+- DISPLAY-SYLLABUS-DETAIL SECTION
+- DISPLAY-WEEK-PLAN SECTION
+- CHECK-CONTINUE SECTION
+
+---
+
+## SYLLST.cbl（シラバス一覧）
+
+全シラバス、または学部・教員・学期ごとに絞り込んだ一覧をページング表示する一覧表示モジュール。
+
+**主なサブルーチン**
+- MAIN-PROCESS
+- OPEN-FILE
+- CLOSE-FILE
+- LIST-OPTIONS-PROCESS
+- GET-DEPARTMENT-FILTER
+- GET-TEACHER-FILTER
+- GET-SEMESTER-FILTER
+- COUNT-RECORDS
+- READ-AND-COUNT-RECORDS
+- RECORD-MATCHES-FILTER
+- CALCULATE-PAGES
+- DISPLAY-LIST-PROCESS
+- PAGE-NAVIGATION
+- DISPLAY-CURRENT-PAGE
+- READ-AND-PROCESS-RECORDS
+- PROCESS-RECORD-FOR-DISPLAY
+
+---
+
+## SYLRPT.cbl（レポート出力）
+
+全シラバス、学部別、教員別のレポートをテキストファイル（syllabus_report.txt）として出力するレポート生成モジュール。
+
+**主なサブルーチン**
+- MAIN-PROCESS
+- OPEN-FILES
+- CLOSE-FILES
+- GET-REPORT-OPTIONS
+- GET-DEPARTMENT-FILTER
+- GET-TEACHER-FILTER
+- GENERATE-REPORT-HEADER
+- GENERATE-REPORT-BODY
+- READ-AND-PROCESS-RECORDS
+- PROCESS-RECORD-FOR-REPORT
+- RECORD-MATCHES-REPORT-FILTER
+- NEW-PAGE
+- GENERATE-REPORT-FOOTER
+
+---
+
+## SYLCOM.cbl（共通ユーティリティ）
+
+科目コードや日付の妥当性チェック、エラーメッセージ生成、現在日付取得など、共通的な処理を提供するユーティリティモジュール。
+
+**主なサブルーチン**
+- MAIN-PROCESS
+- VALIDATE-COURSE-ID
+- VALIDATE-DATE
+- FORMAT-ERROR-MESSAGE
+- GET-CURRENT-DATE
+
+---
+
+## モジュール間の関連性
+
+- **SYLABUS.cbl** は全体のメインメニューであり、ユーザーの選択に応じて各機能モジュール（SYLREG, SYLUPD, SYLDEL, SYLQRY, SYLLST, SYLRPT）を `CALL` で呼び出します。
+- **SYLREG.cbl**, **SYLUPD.cbl**, **SYLDEL.cbl**, **SYLQRY.cbl**, **SYLLST.cbl**, **SYLRPT.cbl** はいずれも `syllabus.dat` ファイルを共通で利用し、科目情報の登録・更新・削除・照会・一覧・レポート出力を分担しています。
+- **SYLCOM.cbl** はユーティリティモジュールとして、科目コードや日付の妥当性チェック、エラーメッセージ生成、現在日付取得などの共通処理を提供し、SYLREG.cblやSYLUPD.cblなどから `CALL` で利用されます。
+- **SYLRPT.cbl** や **SYLLST.cbl** などの出力系モジュールは、SYLCOM.cblの共通処理を必要に応じて利用できます。
+- 各モジュールは、ファイルアクセスやデータ検証などの共通処理をSYLCOM.cblに委譲することで、重複実装を避けています。
+
+---
+
+> まとめ
+SYLABUS.cblが全体の制御役となり、各業務モジュール（SYLREG, SYLUPD, SYLDEL, SYLQRY, SYLLST, SYLRPT）が個別の機能を担当します。SYLCOM.cblは全モジュールから共通的に呼び出される補助的な役割を担い、全体の保守性・再利用性を高めています。

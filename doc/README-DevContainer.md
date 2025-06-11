@@ -1,72 +1,72 @@
-# Development Containers (Dev Containers)
+# 開発コンテナー（Dev Containers）
 
-## What is a Dev Container?
+## Dev Containerとは？
 
-A Development Container (Dev Container) is a containerized development environment that allows developers to work within a consistent, isolated, and reproducible setup regardless of their local machine configuration. Dev Containers leverage Docker containers to provide a pre-configured development environment that includes all necessary tools, libraries, extensions, and settings needed for a specific project or technology stack.
+Development Container（Dev Container）は、開発者がローカルマシンの設定に依存せず、一貫性があり、分離され、再現可能な開発環境で作業できるようにするコンテナ化された開発環境です。Dev ContainerはDockerコンテナを活用し、プロジェクトや技術スタックに必要なツール、ライブラリ、拡張機能、設定がすべて揃った事前構成済みの開発環境を提供します。
 
-## Benefits of Using Dev Containers
+## Dev Containerを使うメリット
 
-### 1. Consistency Across Team Members
+### 1. チーム全体での一貫性
 
-Every developer works with identical development environments, eliminating "it works on my machine" problems. This ensures that code written by one team member will behave the same way for others.
+すべての開発者が同一の開発環境で作業できるため、「自分の環境では動く」といった問題を排除できます。誰が書いたコードでも同じように動作します。
 
-### 2. Simplified Onboarding
+### 2. オンボーディングの簡素化
 
-New team members can be productive immediately without spending hours configuring their local development environment. With a single command, they get a fully functional environment ready for development.
+新しいメンバーも、ローカル環境のセットアップに何時間もかけることなく、すぐに開発を始められます。コマンド一つで、すぐに使える環境が手に入ります。
 
-### 3. Environment Isolation
+### 3. 環境の分離
 
-Dev Containers isolate project dependencies and tools from your local system, preventing conflicts between different projects with different requirements. Each project can have its own specific versions of languages, compilers, and libraries without interfering with other projects.
+Dev Containerはプロジェクトごとの依存関係やツールをローカルシステムから分離します。異なるプロジェクトごとに異なる言語やコンパイラ、ライブラリのバージョンを使っても互いに干渉しません。
 
-### 4. Reproducible Environments
+### 4. 再現可能な環境
 
-The development environment is defined as code in the project repository, making it version-controlled, reproducible, and easily updatable. If something breaks, you can rebuild the container to get back to a known working state.
+開発環境がリポジトリ内でコードとして管理されるため、バージョン管理・再現・更新が容易です。何か問題が起きても、コンテナを再構築すれば元の状態に戻せます。
 
-### 5. Cross-Platform Compatibility
+### 5. クロスプラットフォーム対応
 
-Dev Containers work the same way across Windows, macOS, and Linux, eliminating platform-specific issues and making cross-platform development seamless.
+Dev ContainerはWindows、macOS、Linuxのどれでも同じように動作し、プラットフォーム固有の問題を解消します。
 
-### 6. Closer Parity with Production
+### 6. 本番環境との近似
 
-Development environments can be configured to closely match production environments, reducing the risk of deployment issues caused by environmental differences.
+開発環境を本番環境に近づけて構成できるため、環境差異によるデプロイ時の問題を減らせます。
 
-## Dev Container in This COBOL Workshop
+## このCOBOLワークショップでのDev Container
 
-This workshop uses a custom Dev Container specifically configured for COBOL development. Let's explore the configuration files that define this environment:
+このワークショップでは、COBOL開発用に特別に構成されたDev Containerを使用します。以下に、この環境を定義する設定ファイルを説明します。
 
-# COBOL Workshop Dev Container Configuration
+# COBOLワークショップ Dev Container構成
 
-The `.devcontainer` folder in this repository contains the configuration files that define our COBOL development environment:
+このリポジトリの `.devcontainer` フォルダーには、COBOL開発環境を定義する設定ファイルが含まれています。
 
 ## Dockerfile
 
-The Dockerfile uses a multi-stage build process to create an optimized container:
+Dockerfileはマルチステージビルドを使い、最適化されたコンテナを作成します。
 
 ```dockerfile
 FROM ubuntu:22.04 AS builder
-# Install GnuCOBOL and dependencies in the builder stage
+# ビルダーステージでGnuCOBOLや依存パッケージをインストール
 # ...
 
 FROM ubuntu:22.04
-# Install required packages in the final image
+# 最終イメージで必要なパッケージをインストール
 # ...
 ```
 
-Key aspects of this Dockerfile:
+主なポイント：
 
-- **Base Image**: Ubuntu 22.04 LTS provides a stable foundation
-- **Development Tools**:
-  - `gnucobol` - The GnuCOBOL compiler for COBOL development
-  - `libxml2` - XML processing library
-  - `git` - Version control
-  - `curl` - Network utility
-  - `make` - Build automation
+- **ベースイメージ**: Ubuntu 22.04 LTSを使用し、安定した基盤を提供
+- **開発ツール**:
+  - `gnucobol` - COBOL開発用コンパイラ
+  - `libxml2` - XML処理ライブラリ
+  - `git` - バージョン管理
+  - `curl` - ネットワークユーティリティ
+  - `make` - ビルド自動化
 
-- **User Setup**: Creates a non-root user named `vscode` with sudo privileges for better security while maintaining convenience
+- **ユーザー設定**: `vscode` という非rootユーザーを作成し、sudo権限を付与。利便性とセキュリティを両立
 
 ## devcontainer.json
 
-This file configures how VS Code interacts with the container:
+このファイルは、VS Codeがコンテナとどのように連携するかを設定します。
 
 ```json
 {
@@ -84,7 +84,7 @@ This file configures how VS Code interacts with the container:
                 "ms-vscode.makefile-tools"
             ],
             "settings": {
-                // VS Code settings optimized for COBOL
+                // COBOL向けに最適化されたVS Code設定
             }
         }
     },
@@ -93,23 +93,23 @@ This file configures how VS Code interacts with the container:
 }
 ```
 
-Key features:
+主な特徴：
 
-- **VS Code Extensions**:
-  - `bitlang.cobol` - Basic COBOL language support
-  - `broadcom.cobol-language-support` - Enhanced COBOL language features
-  - `ms-vscode.makefile-tools` - Support for the project's Makefile
+- **VS Code拡張機能**:
+  - `bitlang.cobol` - 基本的なCOBOL言語サポート
+  - `broadcom.cobol-language-support` - 高度なCOBOL言語機能
+  - `ms-vscode.makefile-tools` - Makefileサポート
 
-- **Editor Settings**:
-  - Column rulers at positions 6, 7, 72 (matching COBOL fixed format)
-  - Tab size of 1 with space insertion
-  - COBOL-specific formatting options
+- **エディタ設定**:
+  - カラムルーラー（6, 7, 72桁）でCOBOL固定書式に対応
+  - タブ幅1、スペース挿入
+  - COBOL向けフォーマット設定
 
-- **Post-Creation Command**: Verifies the COBOL compiler installation and outputs a ready message
+- **Post-Creationコマンド**: COBOLコンパイラのインストール確認と準備完了メッセージ
 
 ## compose.yaml
 
-This Docker Compose file defines how the container runs:
+このDocker Composeファイルは、コンテナの起動方法を定義します。
 
 ```yaml
 services:
@@ -127,17 +127,17 @@ services:
     cpu_shares: 1024
 ```
 
-Notable configurations:
+主な設定：
 
-- **Volume Mounting**: Mounts the project root directory to `/workspace` in the container
-- **Resource Limits**:
-  - Memory limit: 1GB
-  - CPU allocation: 1024 shares
-- **Container Lifecycle**: Uses `sleep infinity` to keep the container running
+- **ボリュームマウント**: プロジェクトルートを `/workspace` にマウント
+- **リソース制限**:
+  - メモリ上限: 1GB
+  - CPU割り当て: 1024シェア
+- **コンテナライフサイクル**: `sleep infinity` で常時起動
 
-## Dev Container Architecture
+## Dev Containerアーキテクチャ
 
-The following diagram illustrates the architecture and relationships between different components of the Dev Container configuration:
+以下の図は、Dev Container構成の各コンポーネント間の関係を示します。
 
 ```mermaid
 flowchart TB
@@ -184,68 +184,68 @@ flowchart TB
     VSCodeServer -->|Uses| Extensions
 ```
 
-### Explanation of Components
+### 各コンポーネントの説明
 
-1. **User Interaction Flow**:
-   - The user opens the project in VS Code
-   - VS Code's Dev Container extension detects the Dev Container configuration
-   - The extension reads `devcontainer.json` to understand the container setup
-   - Docker builds and starts the container using the configuration files
+1. **ユーザー操作の流れ**:
+   - ユーザーがVS Codeでプロジェクトを開く
+   - Dev Container拡張が設定を検出
+   - `devcontainer.json` を読み込み、コンテナ設定を把握
+   - Dockerが設定ファイルに従いコンテナをビルド・起動
 
-2. **Configuration Files Relationships**:
-   - `devcontainer.json`: The main configuration file that VS Code reads
-   - `compose.yaml`: Referenced by devcontainer.json to set up Docker Compose
-   - `Dockerfile`: Referenced by compose.yaml to define the container image
+2. **設定ファイルの関係**:
+   - `devcontainer.json`: VS Codeが読むメイン設定ファイル
+   - `compose.yaml`: devcontainer.jsonから参照され、Docker Composeを設定
+   - `Dockerfile`: compose.yamlから参照され、コンテナイメージを定義
 
-3. **Runtime Components**:
-   - **GnuCOBOL Compiler**: The main development tool for COBOL
-   - **VS Code Server**: A server-side component that runs inside the container
-   - **Extensions**: COBOL-specific extensions that enhance development
-   - **Developer Tools**: Additional tools like Git, Make, etc.
+3. **実行時コンポーネント**:
+   - **GnuCOBOLコンパイラ**: COBOL開発のメインツール
+   - **VS Code Server**: コンテナ内で動作するサーバー側コンポーネント
+   - **拡張機能**: COBOL開発を強化するVS Code拡張
+   - **開発ツール**: GitやMakeなどの追加ツール
 
-4. **Data Flow**:
-   - The workspace files are mounted from the host into the container
-   - The compiler and tools inside the container can access these files
-   - VS Code communicates with its server running inside the container
+4. **データフロー**:
+   - ワークスペースファイルはホストからコンテナにマウント
+   - コンテナ内のツールやコンパイラがこれらのファイルにアクセス
+   - VS Codeはコンテナ内のサーバーと通信
 
-This architecture ensures that all development happens inside the isolated container environment while providing a seamless experience through VS Code.
+このアーキテクチャにより、すべての開発作業が分離されたコンテナ内で行われ、VS Codeを通じてシームレスな体験が得られます。
 
-## How the Dev Container Works in This Workshop
+## このワークショップでのDev Containerの動作
 
-When you open this project in VS Code:
+このプロジェクトをVS Codeで開くと：
 
-1. VS Code detects the `.devcontainer` folder and prompts you to reopen in a container
-2. When you accept, it builds the Docker image according to the Dockerfile
-3. Docker Compose starts the container with the specified resource limits
-4. VS Code connects to the running container
-5. The specified extensions are automatically installed
-6. The editor is configured with COBOL-specific settings
-7. You're ready to develop with a fully configured COBOL environment
+1. VS Codeが `.devcontainer` フォルダーを検出し、コンテナで再オープンするよう促します
+2. 承認すると、Dockerfileに従ってDockerイメージをビルド
+3. Docker Composeが指定リソース制限でコンテナを起動
+4. VS Codeが起動中のコンテナに接続
+5. 指定された拡張機能が自動インストール
+6. エディタがCOBOL向けに設定
+7. すぐにCOBOL開発が可能な状態に
 
-This setup ensures that all workshop participants have identical environments with:
+この仕組みにより、すべての参加者が以下のような同一環境で作業できます。
 
-- The same GnuCOBOL compiler version
-- Consistent editor settings for COBOL fixed-format code
-- Required tools and libraries pre-installed
-- Optimal VS Code extensions for COBOL development
+- 同じGnuCOBOLコンパイラバージョン
+- COBOL固定書式に最適なエディタ設定
+- 必要なツール・ライブラリが事前インストール済み
+- COBOL開発に最適なVS Code拡張
 
-## Using the Dev Container
+## Dev Containerの使い方
 
-Once the container is running, you can:
+コンテナが起動したら、以下のことが可能です。
 
-1. Build the COBOL application using VS Code tasks or the Makefile
-2. Run the application directly inside the container
-3. Use the GnuCOBOL compiler (`cobc`) for compilation
-4. Access all container-installed tools from the integrated terminal
+1. VS CodeタスクやMakefileでCOBOLアプリケーションをビルド
+2. コンテナ内でアプリケーションを直接実行
+3. GnuCOBOLコンパイラ（`cobc`）でコンパイル
+4. 統合ターミナルからすべてのツールにアクセス
 
-This containerized approach lets you focus on learning COBOL and modernization techniques without worrying about environment configuration issues.
+このコンテナ化アプローチにより、環境構築の心配なくCOBOLやモダナイゼーション技術の学習に集中できます。
 
-## Customizing the Dev Container
+## Dev Containerのカスタマイズ
 
-If needed, you can customize the Dev Container by modifying the configuration files:
+必要に応じて、設定ファイルを編集してDev Containerをカスタマイズできます。
 
-- Add additional packages to the Dockerfile
-- Configure more VS Code extensions in devcontainer.json
-- Adjust resource limits in compose.yaml
+- Dockerfileに追加パッケージをインストール
+- devcontainer.jsonで拡張機能を追加
+- compose.yamlでリソース制限を調整
 
-After making changes, you can rebuild the container using the "Rebuild Container" command in VS Code.
+変更後は、VS Codeの「Rebuild Container」コマンドで再構築できます。

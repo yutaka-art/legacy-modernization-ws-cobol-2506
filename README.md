@@ -1,172 +1,172 @@
-# COBOL Legacy Application Modernization Workshop
+# COBOL レガシーアプリケーション モダナイゼーション ワークショップ
 
-This repository contains workshop materials for learning how to analyze and modernize legacy COBOL applications. The workshop guides participants through the process of understanding an existing COBOL application and planning its modernization.
+このリポジトリは、レガシー COBOL アプリケーションの分析とモダナイゼーション（近代化）を学ぶためのワークショップ教材を含みます。ワークショップでは、既存の COBOL アプリケーションを理解し、モダナイゼーションを計画するプロセスを段階的に体験します。
 
-*notes*
-*At this time, following these steps does not work properly for COBOL applications; it might be interesting to try to modify the COBOL application to work.*
+*注意*
+*現時点では、以下の手順は COBOL アプリケーションでは正しく動作しません。COBOL アプリケーションを動作させるように修正してみるのも面白いかもしれません。*
 
-## Workshop Overview
+## ワークショップ概要
 
-This workshop simulates a real-world scenario where documentation for a legacy COBOL application has been lost, and participants must analyze, understand, and plan modernization approaches for the application. The workshop is structured as a series of tasks that build upon each other.
+このワークショップは、レガシー COBOL アプリケーションのドキュメントが失われたという現実的なシナリオを想定しています。参加者はアプリケーションを分析し、理解し、モダナイゼーションのアプローチを計画します。ワークショップは一連のタスクで構成されています。
 
-## Prerequisites
+## 前提条件
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Docker](https://www.docker.com/)
-- [Dev Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-- [GitHub CLI](https://cli.github.com/) (optional, for working with workshop issues)
+- [Dev Containers 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+- [GitHub CLI](https://cli.github.com/)（オプション、ワークショップ課題の操作用）
 
-## Getting Started
+## はじめに
 
-1. Fork this repository to your own GitHub account:
-   - Click the "Fork" button in the upper right of the repository page
-   - Complete the fork creation process
+1. このリポジトリを自分の GitHub アカウントにフォークします:
+   - リポジトリページ右上の「Fork」ボタンをクリック
+   - フォーク作成プロセスを完了
 
-2. Clone your forked repository:
+2. フォークしたリポジトリをクローンします:
    ```bash
    git clone https://github.com/your-username/legacy-modernization-ws-cobol.git
    cd legacy-modernization-ws-cobol
    ```
 
-3. Open the project in Visual Studio Code:
+3. Visual Studio Code でプロジェクトを開きます:
    ```bash
    code .
    ```
 
-4. When prompted "Reopen in Container" by VS Code, click on it.
-   - Alternatively, press `F1`, type "Dev Containers: Reopen in Container" and press Enter
+4. VS Code で「Reopen in Container」と表示されたらクリックします。
+   - または `F1` を押して「Dev Containers: Reopen in Container」と入力し、Enter
 
-5. Wait for the Dev Container to build and start. This may take a few minutes the first time.
+5. Dev Container のビルドと起動が完了するまで待ちます（初回は数分かかります）。
 
-## Workshop Structure
+## ワークショップ構成
 
-The workshop is divided into several main sections, each with specific learning objectives:
+ワークショップは複数のセクションに分かれており、それぞれに学習目標があります。
 
-### 0. Repository Setup
-- Fork and clone the repository
-- Set up the development environment using VS Code Dev Containers
+### 0. リポジトリセットアップ
+- リポジトリのフォークとクローン
+- VS Code Dev Containers を使った開発環境のセットアップ
 
-### 1. Initial Analysis
-- Analyze the workshop structure and objectives
-- Explore the project structure
-- Identify technologies used in the project
-- Begin application analysis
+### 1. 初期分析
+- ワークショップ構成と目的の分析
+- プロジェクト構成の調査
+- 使用技術の特定
+- アプリケーション分析の開始
 
-### 2. Application Exploration
-- Understand the processing flow of the application
-- Explore each module's role and functionality
-- Analyze application architecture
+### 2. アプリケーション探索
+- アプリケーションの処理フローの理解
+- 各モジュールの役割と機能の調査
+- アプリケーションアーキテクチャの分析
 
-### 3. Subroutine Investigation
-- Identify subroutines in each module
-- Understand relationships between modules
-- Map dependencies
+### 3. サブルーチン調査
+- 各モジュールのサブルーチンの特定
+- モジュール間の関係性の理解
+- 依存関係のマッピング
 
-### 4. Design Documentation
-- Create templates for design documentation
-- Document the existing application architecture
-- Use diagrams (including mermaid notation) to visualize structures
+### 4. 設計ドキュメント作成
+- 設計ドキュメントのテンプレート作成
+- 既存アプリケーションアーキテクチャのドキュメント化
+- 構造を可視化するための図（mermaid記法含む）の利用
 
-### 5. Modernization Planning
-- Research appropriate technologies for modernization
-- Consider alternative modernization approaches
-- Design a modernized architecture overview
+### 5. モダナイゼーション計画
+- モダナイゼーションに適した技術の調査
+- 代替モダナイゼーションアプローチの検討
+- モダナイズ後のアーキテクチャ概要設計
 
-## Building and Running the Application
+## アプリケーションのビルドと実行
 
-Inside the Dev Container, you can build and run the application using VS Code tasks:
+Dev Container 内で VS Code のタスクを使ってアプリケーションをビルド・実行できます。
 
-### Using VS Code Command Palette (Ctrl+Shift+P or Cmd+Shift+P):
-1. Build the application:
-   - Open Command Palette and type "Tasks: Run Build Task" or press `Ctrl+Shift+B`
+### VS Code コマンドパレット（Ctrl+Shift+P または Cmd+Shift+P）を使用:
+1. アプリケーションのビルド:
+   - コマンドパレットで「Tasks: Run Build Task」と入力、または `Ctrl+Shift+B` を押す
 
-2. Run the application:
-   - Open Command Palette
-   - Type "Tasks: Run Task"
-   - Select "run"
+2. アプリケーションの実行:
+   - コマンドパレットを開く
+   - 「Tasks: Run Task」と入力
+   - 「run」を選択
 
-### Using Terminal in VS Code:
-1. Build the application:
+### VS Code のターミナルを使用:
+1. アプリケーションのビルド:
    ```bash
    make
    ```
 
-2. Run the application:
+2. アプリケーションの実行:
    ```bash
    make run
    ```
 
-3. Clean build artifacts:
+3. ビルド成果物のクリーン:
    ```bash
    make clean
    ```
 
-## Working with Workshop Issues
+## ワークショップ課題の操作
 
-This workshop is structured around GitHub Issues with the "workshop" label. Each issue represents a task or milestone in the workshop. You can view these issues using:
+このワークショップは「workshop」ラベル付きの GitHub Issue を中心に進行します。各 Issue がワークショップのタスクやマイルストーンを表します。以下のコマンドで課題を確認できます。
 
 ```bash
 gh issue list --label workshop
 ```
 
-To view details of a specific issue:
+特定の Issue の詳細を確認するには:
 
 ```bash
 gh issue view ISSUE_NUMBER
 ```
 
-## Legacy Application Overview
+## レガシーアプリケーション概要
 
-The repository contains a legacy COBOL application that participants will discover and analyze throughout the workshop. By exploring the source code and program structure, participants will gradually understand the application's purpose and functionality.
+このリポジトリには、参加者が発見・分析していくレガシー COBOL アプリケーションが含まれています。ソースコードやプログラム構造を調査することで、アプリケーションの目的や機能を段階的に理解できます。
 
-### Application Purpose
+### アプリケーションの目的
 
-This application is a **Syllabus Management System** (シラバス管理システム) designed for educational institutions. It allows users to create, update, query, list, and generate reports for course syllabi. The system stores detailed information about each course including:
+このアプリケーションは教育機関向けの**シラバス管理システム**です。ユーザーは講義シラバスの作成・更新・検索・一覧表示・レポート出力が可能です。各講義について以下の詳細情報を管理します。
 
-- Basic course information (course ID, name, department, teacher, semester, credits)
-- Course descriptions and learning objectives
-- Weekly course plans (15 weeks of content)
-- Relationships to departments and teachers
+- 基本情報（講義ID、名称、所属学科、担当教員、開講学期、単位数）
+- 講義概要・学習目標
+- 週ごとの講義計画（15週分）
+- 学科・教員との関連情報
 
-### Application Structure
+### アプリケーション構成
 
-The system is composed of several interconnected COBOL programs:
+システムは複数の COBOL プログラムで構成されています。
 
-- **SYLABUS**: Main program that serves as the menu interface
-- **SYLREG**: Syllabus registration module
-- **SYLUPD**: Syllabus update module
-- **SYLDEL**: Syllabus deletion module
-- **SYLQRY**: Syllabus query/lookup module
-- **SYLLST**: Syllabus listing module
-- **SYLRPT**: Report generation module
-- **SYLCOM**: Common routines module shared by other programs
+- **SYLABUS**: メニュー画面を提供するメインプログラム
+- **SYLREG**: シラバス登録モジュール
+- **SYLUPD**: シラバス更新モジュール
+- **SYLDEL**: シラバス削除モジュール
+- **SYLQRY**: シラバス検索モジュール
+- **SYLLST**: シラバス一覧表示モジュール
+- **SYLRPT**: レポート出力モジュール
+- **SYLCOM**: 他プログラムで共通利用されるルーチンモジュール
 
-### Data Files
+### データファイル
 
-The application uses indexed files for data storage:
-- `syllabus.dat`: Main data file storing all syllabus records
-- `syllabus_report.txt`: Output file for generated reports
+アプリケーションはインデックス付きファイルをデータ保存に利用します。
+- `syllabus.dat`: すべてのシラバスレコードを格納するメインデータファイル
+- `syllabus_report.txt`: レポート出力用ファイル
 
-### Technical Features
+### 技術的特徴
 
-The application demonstrates several technical aspects common in legacy COBOL systems:
-- Menu-driven terminal user interface
-- Indexed file handling (VSAM-style)
-- Screen section for form-based data entry
-- Multiple program modules with calls between them
-- Report generation
-- Data validation routines
-- File I/O error handling
+このアプリケーションはレガシー COBOL システムに共通する技術的特徴を備えています。
+- メニュー駆動型のターミナルUI
+- インデックス付きファイル操作（VSAM風）
+- フォーム入力用のScreen Section
+- 複数プログラムモジュール間の呼び出し
+- レポート出力
+- データ検証ルーチン
+- ファイルI/Oエラー処理
 
-This system represents a typical line-of-business application that might be found in the administrative systems of educational institutions, making it an excellent candidate for modernization exercises.
+このシステムは、教育機関の管理系業務でよく見られる典型的な業務アプリケーションの一例であり、モダナイゼーション演習に最適です。
 
-The workshop provides a realistic example for exploring modernization approaches for legacy systems commonly found in enterprise environments.
+ワークショップを通じて、エンタープライズ環境でよく見られるレガシーシステムのモダナイゼーション手法を現実的に学ぶことができます。
 
-## License
+## ライセンス
 
-Released under the [MIT license](https://gist.githubusercontent.com/shinyay/56e54ee4c0e22db8211e05e70a63247e/raw/f3ac65a05ed8c8ea70b653875ccac0c6dbc10ba1/LICENSE)
+[MITライセンス](https://gist.githubusercontent.com/shinyay/56e54ee4c0e22db8211e05e70a63247e/raw/f3ac65a05ed8c8ea70b653875ccac0c6dbc10ba1/LICENSE) のもとで公開
 
-## Author
+## 作者
 
 - github: <https://github.com/shinyay>
 - twitter: <https://twitter.com/yanashin18618>
